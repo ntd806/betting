@@ -1,4 +1,4 @@
-# NodejsCore
+# Betting
 Nodejs Core v1.0
 # Requirement
 * Nodejs is the version more than v10
