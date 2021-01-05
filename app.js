@@ -4,9 +4,13 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var morgan = require('morgan');
 var hbs = require('express-hbs');
+var dotenv = require('dotenv');
+var cors = require('cors');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+const authRouter = require('./authentication/auth/auth.routes');
+const userRouter = require('./authentication/users/users.routes');
 
 var app = express();
 
@@ -46,7 +50,10 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/auth', authRouter);
+app.use('/users', userRouter);
+app.use(cors());
+dotenv.config();
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
